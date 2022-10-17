@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!-- Customer create form -->
+<div class="pyl-container pyl-padding">
+    <div class="pyl-card form-container">
+        <div class="form-image" style="background-image: url('{% static "images/ballpoint-pen-794330_1280.jpg" %}')">            
+        </div>
+        <form class="pyl-form" method='post' id='form-ajax'>
+            {% csrf_token %}
+            {% comment %} {{ customer_form.errors }} {% endcomment %}
+            <div class="form-header">
+                <div class="pyl-tooltip" data-text='Click here if You wish to start over'>
+                    <svg class ='refresh-form' xmlns="http://www.w3.org/2000/svg" height="48" width="48" fill='whitesmoke' onclick='resetForm()'>
+                        <path d="M22.25 39.8q-5.25-.6-8.75-4.525Q10 31.35 10 26q0-3.05 1.325-5.775Q12.65 17.5 15 15.55l1.05 1.1q-2.2 1.65-3.35 4.125T11.55 26q0 4.7 3.05 8.15t7.65 4.15Zm3.55.1v-1.55q4.6-.8 7.625-4.25 3.025-3.45 3.025-8.1 0-5.2-3.6-8.825-3.6-3.625-8.85-3.625h-1.65l3.6 3.6-1.15 1.1-5.45-5.45 5.45-5.5 1.15 1.15-3.6 3.55H24q5.85 0 9.925 4.1Q38 20.2 38 26q0 5.35-3.5 9.25-3.5 3.9-8.7 4.65Z"/>
+                    </svg>
+                </div>
+                <h1>Create New Customer</h1>
+            </div>
+            <div class="step-panel">
+                <div class="step step-color" step-name='Personal'>1</div>
+                <div class="step-line"></div>
+                <div class="step" step-name='Contact'>2</div>
+                <div class="step-line"></div>
+                <div class="step" step-name='Workplace'>3</div>
+            </div>
+            <div class="form-step">
+                <div class="form-content">
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_form.first_name.auto_id}}">{{customer_form.first_name.label}}</label>
+                    {{customer_form.first_name}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_form.last_name.auto_id}}">{{customer_form.last_name.label}}</label>
+                    {{customer_form.last_name}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_form.gender.auto_id}}">{{customer_form.gender.label}}</label>
+                    {{customer_form.gender}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_form.dob.auto_id}}">{{customer_form.dob.label}}</label>
+                    {{customer_form.dob}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_form.martial_status.auto_id}}">{{customer_form.martial_status.label}}</label>
+                    {{customer_form.martial_status}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_form.social_security_no_pesel.auto_id}}">{{customer_form.social_security_no_pesel.label}}</label>
+                    {{customer_form.social_security_no_pesel}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_form.id_passport.auto_id}}">{{customer_form.id_passport.label}}</label>
+                    {{customer_form.id_passport}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_form.work_status.auto_id}}">{{customer_form.work_status.label}}</label>
+                    {{customer_form.work_status}}
+                    </span>
+                </div>
+            </div>
+            <div class="form-step form-hide">
+                <div class="form-content">
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_adress.street.auto_id}}">{{customer_adress.street.label}}</label>
+                    {{customer_adress.street}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_adress.building_no.auto_id}}">{{customer_adress.building_no.label}}</label>
+                    {{customer_adress.building_no}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_adress.city.auto_id}}">{{customer_adress.city.label}}</label>
+                    {{customer_adress.city}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_adress.zip_code.auto_id}}">{{customer_adress.zip_code.label}}</label>
+                    {{customer_adress.zip_code}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_form.phone_no.auto_id}}">{{customer_form.phone_no.label}}</label>
+                    {{customer_form.phone_no}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_form.email.auto_id}}">{{customer_form.email.label}}</label>
+                    {{customer_form.email}}
+                    </span>
+                </div>
+            </div>
+            <div class="form-step form-hide">
+                <div class="form-content">
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{workplace_form.name.auto_id}}">{{workplace_form.name.label}}</label>
+                    {{workplace_form.name}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{workplace_adr_form.street.auto_id}}">{{workplace_adr_form.street.label}}</label>
+                    {{workplace_adr_form.street}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{workplace_adr_form.building_no.auto_id}}">{{workplace_adr_form.building_no.label}}</label>
+                    {{workplace_adr_form.building_no}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{workplace_adr_form.city.auto_id}}">{{workplace_adr_form.city.label}}</label>
+                    {{workplace_adr_form.city}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{workplace_adr_form.zip_code.auto_id}}">{{workplace_adr_form.zip_code.label}}</label>
+                    {{workplace_adr_form.zip_code}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{workplace_form.id_nip.auto_id}}">{{workplace_form.id_nip.label}}</label>
+                    {{workplace_form.id_nip}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{workplace_form.phone_no.auto_id}}">{{workplace_form.phone_no.label}}</label>
+                    {{workplace_form.phone_no}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{workplace_form.email.auto_id}}">{{workplace_form.email.label}}</label>
+                    {{workplace_form.email}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_form.esd.auto_id}}">{{customer_form.esd.label}}</label>
+                    {{customer_form.esd}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_form.salaty.auto_id}}">{{customer_form.salaty.label}}</label>
+                    {{customer_form.salaty}}
+                    </span>
+                    <span class="form-fields">
+                    <label class='pyl-label-text' for="{{customer_form.position.auto_id}}">{{customer_form.position.label}}</label>
+                    {{customer_form.position}}
+                    </span>
+                    <input type='hidden' name='customer_id_value' id='customer_id_value' value=''>
+                </div>
+
+            </div>
+            <div class="form-buttons">
+                <button onclick='formPreviousPage()' type='button' class='pyl-btn btn-hide' id='btn-prev'>Previous</button>
+                <button onclick='formNextPage()' type='button' class='pyl-btn' id='btn-next'>Next</button>
+                <button type='submit' class='pyl-btn btn-hide' id='btn-finish'>Finish</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="pyl-modal-background" id='pyl-modal'>
+    <div class="pyl-modal pyl-card">
+        <h1>Customer already exists !</h1>
+        <div class="pyl-modal-text">
+            <p>All fields will be filled up automaticly with existing data</p>
+            <p>Changing data will update current customer instead of creating new one. If You wish to create new customer, please use the form reset button</p>
+        </div>
+        <div class='pyl-modal-data'>
+            <div class="pyl-modal-left">
+                <span>First Name</span>
+                <span>Last Name</span>
+                <span>PESEL</span>
+                <span>Created by</span>    
+            </div>
+            <div class="pyl-modal-right">
+                <span id='modal-first_name'>First Name</span>
+                <span id='modal-last_name'>Last Name</span>
+                <span id='modal-pesel'>PESEL</span>
+                <span id='modal-created_by'>Created by</span> 
+            </div>
+        </div>
+        <span class="pyl-modal-button"><button class="pyl-btn" id='pyl-modal-ok'>OK</button></span>        
+    </div>
+</div>
+
+
+
+{% endblock content %}

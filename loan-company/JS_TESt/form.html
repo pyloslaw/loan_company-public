@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>JS test</title>
+</head>
+<body>
+
+
+<section> <!-- This is a form section-->
+    <div class="pyl-container">
+        <form method="post">
+            <div id='step-1' class="pyl-step step-1 active">
+                <div class="pyl-form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name" placeholder="Imię">
+                </div>
+                <div class="pyl-form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" placeholder="Nazwisko">
+                </div>
+                <button onclick="nextStep()" type="button" class="pyl-btn pyl-btn-next">Next</button>
+            </div>
+            <div id='step-2' class="pyl-step step-2">
+                <div class="pyl-form-group">
+                    <label for="username">username</label>
+                    <input type="text" id="username" name="username" placeholder="pyloslaw">
+                </div>
+                <div class="pyl-form-group">
+                    <label for="email">email</label>
+                    <input type="text" id="email" name="email" placeholder="example@domain.com">
+                </div>
+                <button onclick="previousStep()" type="button" class="pyl-btn pyl-btn-back">Back</button>
+                <button type="Submit" class="pyl-btn pyl-btn-save">Save</button> 
+            </div>            
+        </form>
+    </div>
+</section>
+<script src="script.js"></script>
+</body>
+</html>

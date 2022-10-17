@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+<h3>Login information</h3>
+{% endblock title %}
+{% block content %}
+{% if form.errors %}
+<h3>Username or password are invalid. Try again !</h3>
+{% endif %}
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    {{form.username.label_tag}}
+    {{form.username}}
+
+    {{form.password.label_tag}}
+    {{form.password}}
+    <input type="submit" value='login'>
+    <input type="hidden" name='next' value='{% url 'index' %}'>
+</form>
+
+<h4>If you do not have an account - feel free to create one:</h4>
+<p><a href="{% url 'sign_up' %}">Sign Up</a></p>
+<br><br>
+<h4>Forgot password ?</h4>
+<p><a href="{% url 'user_password_reset' %}">Reset password</a></p>
+
+
+{% endblock content %}

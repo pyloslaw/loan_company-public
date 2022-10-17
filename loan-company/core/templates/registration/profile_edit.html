@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>edit profile</h1>
+<form method="post" enctype="multipart/form-data" >{% csrf_token %}
+    <h2>BASIC</h2>
+    {% comment %} {{ user_basic.as_p }} {% endcomment %}
+    <label for="{{ user_basic.username.auto_id }}">{{ user_basic.username.label }}</label>{{ user_basic.username }}
+    <label for="{{ user_basic.email.auto_id }}">{{ user_basic.email.label }}</label>{{ user_basic.email }}
+    {% comment %} {{user_basic.as_p}} {% endcomment %}
+    {% comment %} {{ user_basic.email}} {% endcomment %}
+    <h2>USERINFO</h2>
+    {{ user_info.as_p }}
+    <h2>ADRESS</h2>
+    {{ user_adress.as_p }}
+    <input type="submit" value="Save">
+
+    {{user_adress.errors}}
+    {{user_basic.errors}}
+</form>
+
+<a type='button' href="{% url 'user_password' user.id %}" class="pyl-btn">Change Password</a>
+{% comment %} <a type='button' href="{% url 'user_pic' user.id %}" class="pyl-btn">Profile Picture</a> {% endcomment %}
+{% endblock content %}

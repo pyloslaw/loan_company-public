@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}
+<h3>List of my customers</h3>
+{% endblock title %}
+{% block content %}
+{% load tags %}
+
+{% autoescape off %}<script>const sort_order = {% sort_active_th %};</script>{% endautoescape %}
+<div class="pyl-container pyl-padding">
+
+    <a type='button' class='pyl-btn' href="{% url 'custom_create' %}">Add Customer</a>
+    <div class="pyl-responsive">
+    <table class="pyl-stnd-list pyl-card">
+        <thead>
+        <tr>            
+            <th id='id'><a class='fill-th' href="{% sort_col 'id' %}&page={{page_obj.number}}">ID <span id='sort-icon'>&#8597</span></a></th>
+            <th id='first_name'><a class='fill-th' href="{% sort_col 'first_name' %}&page={{page_obj.number}}">First Name <span id='sort-icon'>&#8597</span></a></th>
+            <th id='last_name'><a class='fill-th' href="{% sort_col 'last_name' %}&page={{page_obj.number}}">Last Name <span id='sort-icon'>&#8597</span></a></th>
+            <th id='created_date'><a class='fill-th' href="{% sort_col 'created_date' %}&page={{page_obj.number}}">Date created <span id='sort-icon'>&#8597</span></a></th>
+            <th id='salaty'><a class='fill-th' href="{% sort_col 'salaty' %}&page={{page_obj.number}}">Salary <span id='sort-icon'>&#8597</span></a></th>
+            <th id='adress__zip_code'><a class='fill-th' href="{% sort_col 'adress__zip_code' %}&page={{page_obj.number}}">Zip Code <span id='sort-icon'>&#8597</span></a></th>
+            <th id='adress__city'><a class='fill-th' href="{% sort_col 'adress__city' %}&page={{page_obj.number}}">City <span id='sort-icon'>&#8597</span></a></th>
+            <th id='adress__street'><a class='fill-th' href="{% sort_col 'adress__street' %}&page={{page_obj.number}}">Street <span id='sort-icon'>&#8597</span></a></th>
+            <th id='adress__building_no'><a class='fill-th' href="{% sort_col 'adress__building_no' %}&page={{page_obj.number}}">Building no. <span id='sort-icon'>&#8597</span></a></th>
+            <th id=''><a class='fill-th' href="?order_by=id">no. of active products <span id='sort-icon'>&#8597</span></a></th>
+            <th>Details</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+        {% for cust in page_obj %}
+        <tr>
+            <td>{{cust.id}}</td>
+            <td>{{cust.first_name}}</td>
+            <td>{{cust.last_name}}</td>
+            <td>{{cust.created_date}}</td>
+            <td>{{cust.salaty}}</td>
+            <td>{{cust.adress.zip_code}}</td>
+            <td>{{cust.adress.city}}</td>
+            <td>{{cust.adress.street}}</td>
+            <td>{{cust.adress.building_no}}</td>
+            <td>{{cust.product_set.all|length}}</td>
+            <td><a href='{% url 'customer_detail' cust.pk %}'>Click !</a></td>
+            
+        </tr>
+
+        {% empty %}
+        <h4>You currently have 0 customers</h4>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <br><p>{{page_obj|length}}</p>
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="{% sort_col 'PAGINATE'%}1">first</a>
+            <a href="{% sort_col 'PAGINATE'%}{{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="{% sort_col 'PAGINATE'%}{{ page_obj.next_page_number }}">next</a>
+            <a href="{% sort_col 'PAGINATE'%}{{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% sort_active_th %}
+
+{% endblock content %}

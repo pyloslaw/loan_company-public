@@ -1,0 +1,11 @@
+*.pyc
+db.sqlite3
+.DS_Store
+.vscode/
+.venv
+.env
+core/.DS_Store
+migrations/
+__pycache__/
+core/templatetags/__pycache__/
+venv/

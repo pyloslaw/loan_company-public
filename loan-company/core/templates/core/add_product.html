@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+<h3>Add new Loan/Product</h3>
+{% endblock title %}
+{% block content %}
+<div class="pyl-container">
+    <form method="post">
+        {% csrf_token %}
+        <div class='w3-card-4 w3-container w3-row'>
+        <ul>
+            {%for fields in add_product %}
+                <li>{{fields.label}}{{fields}}</li>
+            {% endfor %}
+
+            {{add_product.product_name}}
+            {{add_product.product_name.label}}
+            {{add_product.product_name.error}}
+        </ul>
+        <button class="pyl-btn" type="submit">Create</button>
+        <a class='pyl-btn' href="{% url 'customer_detail' customer_id %}">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

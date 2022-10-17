@@ -1,0 +1,9 @@
+psycopg2==2.9.4 for prod
+psycopg2-binary==2.9.4 for dev
+
+
+settings:
+
+in database settings:
+'HOST":"db" for prodcutnion
+'HOST':'127.0.0.1' for dev

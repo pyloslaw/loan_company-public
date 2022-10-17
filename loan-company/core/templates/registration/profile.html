@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>PROFILE SITE</h1>
+
+<div class="pyl-container">
+    <div class="form-header">
+        <h1>{{ userinfo.first_name}} {{ userinfo.last_name }}</h1>
+    </div>
+    <a type='button' href="{% url 'user_profile_edit' user.id %}" class="pyl-btn">Edit</a>
+</div>
+
+{{massage}}
+{{ userinfo.user.username}}
+{{ userinfo.user.id }}
+{{ userinfo.first_name }}
+{{ userinfo.user.email}}
+{{ userinfo.adress }}
+<br>
+{{ userinfo.user.last_login }}
+<br>
+{{ userinfo.adress.street }}
+<br>
+{% if userinfo.profile_pic %}{{ userinfo.profile_pic }}
+<img src="{{userinfo.profile_pic.url}}" alt="#">
+{% else %}
+<h4>NONE</h4>
+{% endif %}
+
+
+{% endblock content %}

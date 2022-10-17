@@ -1,0 +1,86 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+section{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightblue;
+}
+
+.pyl-container{
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0px 0px 20px #00000050;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.pyl-step{
+    display: none;
+}
+
+.pyl-step.active{
+    display: block;
+}
+
+.pyl-form-group{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.pyl-form-group input{
+    width: 100%;
+    border: 1.5px solid lightgrey;
+    padding: 5px;
+}
+
+.pyl-btn{
+    background-color: darkblue;
+    color: white;
+    letter-spacing: 3px;
+    width: 20%;
+    margin-top: 20px;
+    padding: 5px;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 5px solid darkblue;
+    padding-bottom: 0px;
+    transition: border 250ms linear;
+}
+
+.pyl-btn:hover{
+    color: white;
+    letter-spacing: 3px;
+    width: 20%;
+    margin-top: 20px;
+    padding: 5px;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 5px solid red;
+    padding-bottom: 0px;
+
+}
+
+.pyl-btn-next{
+    float: right;
+}
+
+.pyl-btn-back{
+    float: left;
+}
+
+.pyl-btn-save{
+    float: right;
+}

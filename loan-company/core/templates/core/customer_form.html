@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<h3>Please enter the requiered information</h3>
+{% endblock title %}
+
+{% block content %}
+<div class='w3-container'>
+    <form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    
+    <button class='w3-button w3-green' type='submit'>Submit</button>
+    </form>
+
+</div>
+
+
+<br><br>
+<section>
+    <div class="w3-card-4 pyl-card">
+        <header class="w3-container w3-blue"><h3>Add new Customer</h3></header>
+        <div class="pyl-form">
+            <div class="w3-container pyl-cc"></div>
+            <div class="w3-container">
+            <form method="post">
+                {% csrf_token %}
+                <ul>
+                {% for field in form %}
+                <li>{{field.label}} : {{field}}</li>
+                {% endfor %}
+                </ul>
+            </form>
+        </div>
+        </div>        
+    </div>
+</section>
+{% endblock content %}

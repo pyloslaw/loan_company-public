@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+{% comment %} {% block title %}
+<h4>{{customer}}</h4>
+{% endblock title %} {% endcomment %}
+
+{% block content %}
+{% comment %} <table>
+    {% for label, value in object.get_fields %}
+        <tr>
+            <td>{{ label }}</td>
+            <td>{{ value }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<ol>
+{% for item in customer.product_set.all %}
+<li>{{item}}</li>
+{% empty %}
+<p>No products sold yet ! </p>
+{% endfor %}
+</ol>
+<div class="w3-container"><a href='{% url 'add_product' object.id %}'class="w3-button w3-theme-d5 w3-hover-theme">Add Product</a></div>
+<ul>
+    <li>{{customer.adress.street}}</li>
+</ul> {% endcomment %}
+
+
+
+<div class="pyl-container">
+    <div class="form-header" id='customer-details'>
+        {% comment %} <div class="pyl-header-icon"> {% endcomment %}
+            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" fill='white'><path d="M23.3 33h1.55V22H23.3Zm.7-13.7q.45 0 .75-.3t.3-.75q0-.5-.3-.8-.3-.3-.75-.3-.5 0-.775.3t-.275.8q0 .45.3.75t.75.3ZM24 42q-3.75 0-7-1.425T11.3 36.7Q8.85 34.25 7.425 31 6 27.75 6 24t1.425-7.025q1.425-3.275 3.875-5.7 2.45-2.425 5.7-3.85Q20.25 6 24 6t7.025 1.425q3.275 1.425 5.7 3.85 2.425 2.425 3.85 5.7Q42 20.25 42 24q0 3.75-1.425 7t-3.85 5.7q-2.425 2.45-5.7 3.875Q27.75 42 24 42Zm.05-1.55q6.8 0 11.6-4.8t4.8-11.7q0-6.8-4.775-11.6T24 7.55q-6.85 0-11.65 4.775Q7.55 17.1 7.55 24q0 6.85 4.8 11.65 4.8 4.8 11.7 4.8ZM24 24Z"/></svg>
+        {% comment %} </div> {% endcomment %}
+        <h1>{{customer.first_name}} {{customer.last_name}}</h1>
+        {% comment %} <svg class='right' xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M23.3 33h1.55v-8.15H33V23.3h-8.15V15H23.3v8.3H15v1.55h8.3Zm.7 9q-3.75 0-7-1.425T11.3 36.7Q8.85 34.25 7.425 31 6 27.75 6 24t1.425-7.025q1.425-3.275 3.875-5.7 2.45-2.425 5.7-3.85Q20.25 6 24 6t7.025 1.425q3.275 1.425 5.7 3.85 2.425 2.425 3.85 5.7Q42 20.25 42 24q0 3.75-1.425 7t-3.85 5.7q-2.425 2.45-5.7 3.875Q27.75 42 24 42Zm.05-1.55q6.8 0 11.6-4.8t4.8-11.7q0-6.8-4.775-11.6T24 7.55q-6.85 0-11.65 4.775Q7.55 17.1 7.55 24q0 6.85 4.8 11.65 4.8 4.8 11.7 4.8ZM24 24Z"/></svg> {% endcomment %}
+            <a href="{% url 'add_product' customer.id %}"><svg id='add-product' xmlns="http://www.w3.org/2000/svg" height="48" width="48" fill='white'><path d="M23.3 33h1.55v-8.15H33V23.3h-8.15V15H23.3v8.3H15v1.55h8.3Zm.7 9q-3.75 0-7-1.425T11.3 36.7Q8.85 34.25 7.425 31 6 27.75 6 24t1.425-7.025q1.425-3.275 3.875-5.7 2.45-2.425 5.7-3.85Q20.25 6 24 6t7.025 1.425q3.275 1.425 5.7 3.85 2.425 2.425 3.85 5.7Q42 20.25 42 24q0 3.75-1.425 7t-3.85 5.7q-2.425 2.45-5.7 3.875Q27.75 42 24 42Zm.05-1.55q6.8 0 11.6-4.8t4.8-11.7q0-6.8-4.775-11.6T24 7.55q-6.85 0-11.65 4.775Q7.55 17.1 7.55 24q0 6.85 4.8 11.65 4.8 4.8 11.7 4.8ZM24 24Z"/></svg></a>
+    </div>
+    <div class='pyl-box-content'>
+        <div class="pyl-information-box personal-info">
+            <div class="pyl-box-header">
+                <h2>Basic information</h2>
+            </div>
+            <div class="pyl-box-data">
+                <div class="pyl-box left">First Name<span class="right">{{customer.first_name}}</span></div>
+                <div class="pyl-box left">Last Name<span class="right">{{customer.last_name}}</span></div>
+                <div class="pyl-box left">Sex<span class="right">{{customer.get_gender_display}}</span></div>
+                <div class="pyl-box left">Date of Birth<span class="right">{{customer.dob}}</span></div>
+                <div class="pyl-box left">Martial Status<span class="right">{{customer.get_martial_status_display}}</span></div>
+                <div class="pyl-box left">PESEL<span class="right">{{customer.social_security_no_pesel}}</span></div>
+                <div class="pyl-box left">ID or Passport<span class="right">{{customer.id_passport}}</span></div>
+            </div>
+            <div class="pyl-box-buttons">
+                <a href="{% url 'customer_update' pk=customer.pk %}?mode=basic"><button id='basic' class="pyl-btn">Edit</button></a>
+            </div>
+        </div>
+        <div class="pyl-information-box personal-info">
+            <div class="pyl-box-header">
+                <h2>Contact Information</h2>
+            </div>
+            <div class="pyl-box-data">
+                <div class="pyl-box left">Street<span class="right">{{customer.adress.street}}</span></div>
+                <div class="pyl-box left">Building no.<span class="right">{{customer.adress.building_no}}</span></div>
+                <div class="pyl-box left">City<span class="right">{{customer.adress.city}}</span></div>
+                <div class="pyl-box left">Zip-code<span class="right">{{customer.adress.zip_code}}</span></div>
+                <div class="pyl-box left">Phone no.<span class="right">{{customer.phone_no}}</span></div>
+                <div class="pyl-box left">Email<span class="right">{{customer.email}}</span></div>
+            </div>
+            <div class="pyl-box-buttons">
+                <a href="{% url 'customer_update' pk=customer.pk %}?mode=contact"><button onclick='openModal()' id='contact' class="pyl-btn">Edit</button></a>
+            </div>
+        </div>
+        <div class="pyl-information-box personal-info">
+            <div class="pyl-box-header">
+                <h2>Income Information</h2>
+            </div>
+            <div class="pyl-box-data">
+                <div class="pyl-box left">Income Source<span class="right">{{customer.get_work_status_display}}</span></div>
+                <div class="pyl-box left">Net Income<span class="right">{{customer.salaty}}</span></div>
+                <div class="pyl-box left">Company name<span class="right">{{customer.workplace.name}}</span></div>
+                <div class="pyl-box left">Employement<br>start date<span class="right">{{customer.esd}}</span></div>
+                <div class="pyl-box left">Job position<span class="right">{{customer.position}}</span></div>
+                <div class="pyl-box left">Building no.<span class="right">{{customer.workplace.adress.building_no}}</span></div>
+                <div class="pyl-box left">City<span class="right">{{customer.workplace.adress.city}}</span></div>
+                <div class="pyl-box left">Zip-code<span class="right">{{customer.workplace.adress.zip_code}}</span></div>
+                <div class="pyl-box left">Phone no.<span class="right">{{customer.workplace.phone_no}}</span></div>
+                <div class="pyl-box left">Email<span class="right">{{customer.workplace.email}}</span></div>
+            </div>
+            <div class="pyl-box-buttons">
+                <button id='income' class="pyl-btn" data-url="{% url 'customer_update' pk=customer.pk %}?mode=contact">Edit</button>
+            </div>
+        </div>
+    </div>
+    <div class="pyl-box-content products">
+
+        {%for pr in customer.product_set.all%}
+        <div class="pyl-information-box products">
+            <div class="pyl-box-header">
+                <h2>{{pr.get_product_name_display}} - id {{pr.id}}</h2>
+            </div>
+            <div class="pyl-box-data">
+                <div class="pyl-box left">Product Name<span class="right">{{pr.get_product_name_display}}</span></div>
+                <div class="pyl-box left">Amount Requested<span class="right">{{pr.amount_requested}}</span></div>
+                <div class="pyl-box left">Load Period<span class="right">{{pr.loan_period}}</span></div>
+                <div class="pyl-box left">Interest rate<span class="right">{{pr.global_interest_rate_dec}}</span></div>
+                <div class="pyl-box left">Lombard rate<span class="right">{{pr.lombard_rate_dec}}</span></div>
+                <div class="pyl-box left">Total Amount<span class="right">{{pr.total_amount_dec}}</span></div>
+                <div class="pyl-box left">Sold Date<span class="right">{{pr.created_date}}</span></div>
+                <div class="pyl-box left">ID<span class="right">{{pr.id}}</span></div>
+                <div class="pyl-box left">Installment<span class="right">{{pr.installments_dec}}</span></div>
+                <div id="expanded-{{pr.id}}" class='pyl-box pyl-expand'>                  
+                    <span id="{{pr.id}}" onclick='expandTable(this.id)'><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 20.625 7.825 16.45 8.9 15.375l3.1 3.1 3.1-3.1 1.075 1.075ZM8.9 8.675 7.825 7.6 12 3.425 16.175 7.6 15.1 8.675 12 5.6Z"/></svg>Expand</span></div>
+                <div id="collapsed-{{pr.id}}" class='pyl-box pyl-expand pyl-hidden'>                  
+                    <span id="{{pr.id}}" onclick='shrinkTable(this.id)'><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M8.9 19.65 7.85 18.6 12 14.45l4.15 4.15-1.05 1.05-3.1-3.1ZM12 9.55 7.85 5.4 8.9 4.35l3.1 3.1 3.1-3.1 1.05 1.05Z"/></svg>Shrink</span></div>
+                
+            </div>
+            <div class="pyl-hidden" id="table-{{pr.id}}">
+                <table class="pyl-product-table">
+                    <thead>
+                        {% comment %} <tr>
+                            <th>Installment no.</th>
+                            <th>Required amount</th>
+                            <th>Due Date</th>
+                        </tr> {% endcomment %}
+                        <tr>
+                            <th>Installment no.</th>
+                            <th>Required amount</th>
+                            <th>Due Date</th>
+                            <th>Payment no.</th>
+                            <th>Payment amount</th>
+                            <th>Payment Date</th>
+                            <th>Installment Remainder</th>
+                            <th>Payment Remainder</th>
+                            <th>Delay (days)</th>
+                        </tr>
+                    </thead>
+                    <tr>
+
+                        {% for a,b,c,d,e,f,g,h,i in pr.create_schedule %}
+                            <td>{{a}}</td>
+                            <td>{{b}}</td>
+                            <td>{{c}}</td>
+                            <td>{{d}}</td>
+                            <td>{{e}}</td>
+                            <td>{{f}}</td>
+                            <td>{{g}}</td>
+                            <td>{{h}}</td>   
+                            <td>{{i}}</td>                         
+                    <tr>                    
+                        {% endfor %}
+
+
+
+
+                        {% comment %} <tr>
+
+                        {% for k,v in pr.installment_dict.items%}
+                            <td>{{k}}</td>
+                            {%for val in v.values%}
+                                <td>{{val}}</td>
+                            {% endfor %}
+                        <tr>
+                    
+                        {% endfor %} {% endcomment %}
+                </table>
+            </div>
+        </div>
+            {% empty %}
+        <div class="pyl-information-box">
+            <div class="pyl-box-header">
+                <h2>No Products !</h2>
+            </div>
+            <div class="pyl-box-data">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock content %}

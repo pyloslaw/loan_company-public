@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Json Test</h1>
+{% autoescape off %}
+{{customer}}
+<script> var customer_json = {{customer}}</script>
+{% comment %} <br>
+<script> var adress_json = {{adress}}</script>
+<br>
+<script> var workplace_json = {{workplace}}</script>
+<br>
+<script> var workplace_adress_json = {{workplace_adress}}</script> {% endcomment %}
+{% endautoescape %}
+<label for="id_first_name" class="for">First name</label>
+<input type="text" id='id_first_name'>
+{% endblock content %}
+
+

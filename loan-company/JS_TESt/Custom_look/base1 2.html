@@ -1,0 +1,61 @@
+{% load static %}
+{% load tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="pyle-style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <section>
+        <div class="pyl-navbar">
+            <div class="pyl-container pyl-header">
+                <a class="pyl-title" href="{% url 'index' %}">LoanCompany <span class='t2'>website</span></a>
+                <span id="menu-ic" class="material-icons-outlined" onclick="openMenu()">menu</span>
+                <span id='close-ic' class="material-icons-outlined menu-invisible" onclick="openMenu()">close</span>
+            </div>      
+            <nav id='navbar' class="menu-invisible">   
+                <ul class="pyl-navbar-links">
+                    <li><a href="{% url 'customer_list' %}">My Customers</a></li>
+                    <li><a href="#">Statistics</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Print to pdf</a></li>
+                </ul>
+                <ul class="pyl-navbar-login-links">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    {% if user.is_authenticated %}
+                    <li>Logged as: {% user_first_name    %}</li>
+                    <li><span class="material-icons-outlined" onclick="#">account_circle</span></li>
+                    {% else %}
+                    <li><a href="#">Login</a></li>
+                    {% end if %}
+                </ul>
+            </nav>
+        </div>
+    </section>
+{% block content%}
+{% endblock content %}
+
+
+
+
+
+    <ul>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+    </ul>
+<script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+.env
+.venv
+venv
+# */.venv
+# */venv
+.git
+.gitignore
+.DS_Store
+*.pyc
+dockerfile
+dockercompose.yml
+.dockerignore
+docker_other
